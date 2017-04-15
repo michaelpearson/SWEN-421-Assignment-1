@@ -1,0 +1,10 @@
+*
+
+!*.gps
+!*.ads
+!*.adb
+
+!.gitignore
+!*/
+
+obj/
