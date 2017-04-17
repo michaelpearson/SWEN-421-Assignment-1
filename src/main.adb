@@ -1,5 +1,6 @@
 with Pumps;
 use all type Pumps.Reserve_Sensor_States;
+use all type Pumps.Pump_States;
 
 
 procedure Main with SPARK_Mode => On is
@@ -10,6 +11,14 @@ begin
 
    if pump.Reserve_State /= Empty then
       pump.Start_Pumping;
+      pump.Set_Reserve_Sensor(Empty);
+
+      if pump.State = Pumping then
+         pump.Stop_Pumping;
+      end if;
+
+      pump.Replace_Nozzle;
+      pump.Pay;
    end if;
 
 

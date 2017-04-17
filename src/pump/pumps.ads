@@ -29,9 +29,6 @@ package Pumps with SPARK_Mode => On is
      Pre'Class => this.State = WaitingOnCradle,
      Post'Class => this.State = Base;
 
-
-
-
    procedure Tank_Full_Event(this : in out Pump_Type) with
      Pre'Class => (this.State = WaitingOffCradle Or this.State = Pumping Or this.State = Disabled),
      Post'Class => (this.State = Disabled);
