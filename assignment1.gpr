@@ -1,0 +1,9 @@
+project Assignment1 is
+
+   for Source_Dirs use ("/home/michael/workspace/SWEN-421-Assignment-1/src/**");
+   for Object_Dir use "obj";
+   for Main use ("main.adb");
+   --   for Source_Files use ("src/**");
+
+end Assignment1;
+
