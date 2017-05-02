@@ -1,25 +1,16 @@
-with Pumps;
-use all type Pumps.Reserve_Sensor_States;
-use all type Pumps.Pump_States;
-
+with Pump_Units;
+with Tank;
+with Shared_Types;
+use all type Shared_Types.Fuel_Type;
 
 procedure Main with SPARK_Mode => On is
-   pump : Pumps.Pump_Type;
-   empty_state : Pumps.Reserve_Sensor_States := Pumps.Reserve_Sensor_States'First;
+   pump_unit : Pump_Units.Pump_Unit_Type := Pump_Units.Make_Pump_Unit;
+   my_tank : Tank.Tank_Type := Tank.Make_Tank(1000, Petrol95, 0);
+   success : Boolean;
 begin
-   pump.Lift_Nozzle;
 
-   if pump.Reserve_State /= Empty then
-      pump.Start_Pumping;
-      pump.Set_Reserve_Sensor(Empty);
+   pump_unit.Fill_Tank(my_tank, success);
 
-      if pump.State = Pumping then
-         pump.Stop_Pumping;
-      end if;
-
-      pump.Replace_Nozzle;
-      pump.Pay;
-   end if;
 
 
 end Main;

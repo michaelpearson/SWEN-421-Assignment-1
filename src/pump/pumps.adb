@@ -1,7 +1,6 @@
 with IO; use IO;
 
-package body Pumps with
-     Spark_Mode => On is
+package body Pumps with SPARK_Mode => On is
 
    -- Create a new instance of a pump in its default state.
    -- The default state is the ready state with fuel in the reserve & the sensor not triggered
@@ -133,8 +132,8 @@ package body Pumps with
          else
             pump.State := Crash;
          end if;
+         Print_Transition (Starting_State, pump.State);
       end if;
-      Print_Transition (Starting_State, pump.State);
    end Set_Reserve_Sensor;
 
 end Pumps;
