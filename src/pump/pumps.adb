@@ -134,6 +134,7 @@ package body Pumps with SPARK_Mode => On is
          end if;
          Print_Transition (Starting_State, pump.State);
       end if;
+      pump.Reserve_State := state;
    end Set_Reserve_Sensor;
 
 end Pumps;

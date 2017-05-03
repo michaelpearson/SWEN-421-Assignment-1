@@ -1,4 +1,5 @@
 with Pumps;
+with General_IO;
 use all type Pumps.Reserve_Sensor_States;
 
 package body Reserves with SPARK_Mode => On is
@@ -10,18 +11,12 @@ package body Reserves with SPARK_Mode => On is
                            Current_Fill => current_fill);
    end Make_Reserve;
 
-   procedure Take_Fuel(this : in out Reserve_Type; amount_to_take : in Shared_Types.Millilitre_Type; amount_taken : out Shared_Types.Millilitre_Type; sensor_state : out Pumps.Reserve_Sensor_States) is
-
-   begin
-      if this.Current_Fill < amount_to_take then
-         amount_taken := this.Current_Fill;
-         sensor_state := Empty;
-      else
-         amount_taken := amount_to_take;
-         sensor_state := NotEmpty;
+   procedure Take_Fuel(this : in out Reserve_Type) is begin
+      pragma Assert(this.Current_Fill > 0);
+      if this.Current_Fill > 0 then
+         this.Current_Fill := this.Current_Fill - 1;
       end if;
-      this.Current_Fill := this.Current_Fill - amount_taken;
+      General_IO.Print_Fuel_Amount(this.Fuel, this.Current_Fill);
    end Take_Fuel;
-
 
 end Reserves;
