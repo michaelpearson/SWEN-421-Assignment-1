@@ -7,8 +7,8 @@ use all type Shared_Types.Fuel_Type;
 package Pump_Units with SPARK_Mode => On is
    type Pump_Unit_Type is tagged private;
 
-   type Pump_Array_Type is array(Shared_Types.Fuel_Type) of aliased Pumps.Pump_Type;
-   type Reserve_Array_Type is array(Shared_Types.Fuel_Type) of aliased Reserves.Reserve_Type;
+   type Pump_Array_Type is array(Shared_Types.Fuel_Type) of Pumps.Pump_Type;
+   type Reserve_Array_Type is array(Shared_Types.Fuel_Type) of Reserves.Reserve_Type;
 
    function Make_Pump_Unit return Pump_Unit_Type with
      Post'Class => (for all p of Make_Pump_Unit'Result.Get_Pumps => p.Reserve_State = NotEmpty);
